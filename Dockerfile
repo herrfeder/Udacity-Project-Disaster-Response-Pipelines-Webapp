@@ -13,14 +13,14 @@ RUN pip install plotly
 RUN useradd -m datascientist
 USER datascientist
 
-WORKDIR /home/datascientist/webenv/
+WORKDIR /home/datascientist/
 
 RUN python -m nltk.downloader punkt
 RUN python -m nltk.downloader wordnet
 RUN python -m nltk.downloader stopwords
 
 RUN git clone https://github.com/herrfeder/Udacity-Project-Disaster-Response-Pipelines-Webapp.git
-WORKDIR /home/datascientist/webenv/Udacity-Project-Disaster-Response-Pipelines-Webapp/
+WORKDIR /home/datascientist/Udacity-Project-Disaster-Response-Pipelines-Webapp/
 
 ENV ENVIRONMENT production
 
