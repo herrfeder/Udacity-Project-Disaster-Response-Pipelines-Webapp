@@ -1,6 +1,7 @@
 FROM tiangolo/uwsgi-nginx-flask:python3.6
 
-USER test
+RUN useradd datascientist
+USER datascientist
 
 WORKDIR /webenv/
 
