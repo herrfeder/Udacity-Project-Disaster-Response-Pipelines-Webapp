@@ -107,7 +107,7 @@ def main():
         save_data(df, database_filepath)
         
         print('Cleaned data saved to database!')
-    
+        sys.exit(0)
     else:
         print('Please provide the filepaths of the messages and categories '\
               'datasets as the first and second argument respectively, as '\
