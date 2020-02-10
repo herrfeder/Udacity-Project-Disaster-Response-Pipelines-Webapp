@@ -1,10 +1,5 @@
 FROM tiangolo/uwsgi-nginx-flask:python3.6
 
-RUN useradd datascientist
-USER datascientist
-
-WORKDIR /webenv/
-
 RUN pip install numpy==1.17
 RUN pip install scipy==0.19.1
 RUN pip install Flask==1.0.0
@@ -14,6 +9,11 @@ RUN pip install scikit_learn
 RUN pip install nltk
 RUN pip install sqlalchemy
 RUN pip install plotly
+
+RUN useradd datascientist
+USER datascientist
+
+WORKDIR /webenv/
 
 RUN python -m nltk.downloader punkt
 RUN python -m nltk.downloader wordnet
