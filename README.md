@@ -8,6 +8,24 @@
 
 
 ### Docker Instructions:
+1. Create directory and download Dockerfile:
+    ```
+    mkdir pipeline_docker && cd pipeline_docker
+    wget https://raw.githubusercontent.com/herrfeder/Udacity-Project-Disaster-Response-Pipelines-Webapp/master/Dockerfile
+    ```
+
+2. Build Docker Container:
+    ```
+    docker build . -t pipeline_docker
+    ```
+    As the model will be trained during Build, this will take a while.
+    
+3. Run Docker Container:
+    ```
+    docker run -p 8000:8000 pipeline_docker:latest
+    ```
+
+4. Go to http://0.0.0.0:8000/
 
 ### Manual Instructions:
 1. Clone this Repository and move into it:
@@ -16,7 +34,18 @@
     cd Udacity-Project-Disaster-Response-Pipelines-Webapp
     ```
 
-2. Resolve all required Python Packages.
+2. Resolve all required Python Packages:
+    ```
+    pip install numpy==1.17
+    pip install scipy==0.19.1
+    pip install Flask==1.0.0
+    pip install pandas==1.0.0
+    pip install matplotlib
+    pip install scikit_learn
+    pip install nltk
+    pip install sqlalchemy
+    pip install plotly
+    ```
 
 3. Run the following commands in the project's root directory to set up your database and model.
 

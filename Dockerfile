@@ -1,5 +1,7 @@
 FROM tiangolo/uwsgi-nginx-flask:python3.6
 
+USER test
+
 WORKDIR /webenv/
 
 RUN pip install numpy==1.17
