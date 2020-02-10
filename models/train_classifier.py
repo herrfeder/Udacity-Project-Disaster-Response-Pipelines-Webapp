@@ -28,7 +28,7 @@ from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 
 # Download relevant ntlk packages
-nltk.download(["punkt", "stopwords", "wordnet"])
+#nltk.download(["punkt", "stopwords", "wordnet"])
 
 # pickle for python object serialization and storing
 import pickle
