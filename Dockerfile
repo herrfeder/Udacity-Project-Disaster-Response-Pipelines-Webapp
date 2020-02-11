@@ -9,6 +9,7 @@ RUN pip install scikit_learn
 RUN pip install nltk
 RUN pip install sqlalchemy
 RUN pip install plotly
+RUN pip install pyvis
 
 RUN useradd -m datascientist
 USER datascientist

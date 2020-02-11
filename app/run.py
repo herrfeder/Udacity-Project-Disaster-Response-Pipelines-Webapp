@@ -29,6 +29,7 @@ import nltk
 app = Flask(__name__,
             static_folder='static',)
 
+app.config["APPLICATION_ROOT"] = "/disasterresponse"
 
 def create_graph(df, path="static/graph_disaster_response.html"):
     '''
