@@ -18,8 +18,6 @@ from scipy import interpolate
 from pyvis.network import Network
 
 import os
-import sys
-sys.path.append('../')
 from models.train_classifier import MessageIsQuestion
 from models.train_classifier import tokenize
 from sklearn.base import BaseEstimator, TransformerMixin
@@ -114,12 +112,11 @@ def create_graph(df, path="static/graph_disaster_response.html"):
 
     
 # load data
-print(os.listdir(".."))
-engine = create_engine('sqlite:///../data/DisasterResponse.db')
+engine = create_engine('sqlite:///data/DisasterResponse.db')
 df = pd.read_sql_table('messages', engine)
 
 # load model
-model = joblib.load("../models/classifier.pkl")
+model = joblib.load("models/classifier.pkl")
 
 
 # index webpage displays cool visuals and receives user input text for model
