@@ -29,7 +29,6 @@ import nltk
 app = Flask(__name__,
             static_folder='static',)
 
-app.config["APPLICATION_ROOT"] = "/disasterresponse"
 
 def create_graph(df, path="static/graph_disaster_response.html"):
     '''
@@ -115,6 +114,7 @@ def create_graph(df, path="static/graph_disaster_response.html"):
 
     
 # load data
+print(os.listdir(".."))
 engine = create_engine('sqlite:///../data/DisasterResponse.db')
 df = pd.read_sql_table('messages', engine)
 
