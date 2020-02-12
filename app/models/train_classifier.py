@@ -1,5 +1,6 @@
 # sys internals
 import sys
+import os
 
 # basic data libraries
 import pandas as pd
@@ -15,10 +16,11 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.base import BaseEstimator, TransformerMixin
 
-
 # scikit-learn model evaluation
 from sklearn.metrics import classification_report
 
+# loading model
+from sklearn.externals import joblib
 # nltk-modules for text processing, tokenizing and lemmatizing
 import nltk
 from nltk.tokenize import word_tokenize
@@ -45,6 +47,7 @@ except LookupError:
     
 # pickle for python object serialization and storing
 import pickle
+
 
 
 def load_data(database_filepath):
@@ -242,6 +245,44 @@ def evaluate_model(model, X_test, Y_test, category_names):
 def save_model(model, model_filepath):
     pickle.dump(model, open(model_filepath, "wb"))
 
+class ModelMover():
+    '''
+    Model for assuring Object relation for pickling the model because there could be issues:
+    https://www.stefaanlippens.net/python-pickling-and-dealing-with-attributeerror-module-object-has-no-attribute-thing.html
+    '''
+    def __init__(self, database_filepath, model_filepath):
+        '''
+        Adding database path and model path and create and store model if it doesn't exist.
+        
+        Input Arguments:
+            database_filepath: string with relative path to database file
+            model_filepath: string with relative path to model file
+        '''
+        
+        self.dpath = database_filepath
+        self.mpath = model_filepath
+        
+        if not os.path.exists(self.mpath):
+            print("Have to create model.")
+            self.create_model()
+        
+    def create_model(self):
+        '''
+        Creating and saving the model.
+        '''
+        X, Y, category_names = load_data(self.dpath)
+        X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2)
+        model = build_model()
+        model.fit(X_train, Y_train)
+        pickle.dump(model, open(self.mpath, "wb"))
+        
+    def load_model(self):
+        '''
+        Loading the model.
+        '''
+        return joblib.load(self.mpath)
+    
+    
 
 def main():
     if len(sys.argv) == 3:
@@ -271,5 +312,6 @@ def main():
               'train_classifier.py ../data/DisasterResponse.db classifier.pkl')
 
 
+
 if __name__ == '__main__':
-    main()
+    pass

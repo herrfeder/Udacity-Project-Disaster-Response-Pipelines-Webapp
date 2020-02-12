@@ -10,6 +10,7 @@ RUN pip install nltk
 RUN pip install sqlalchemy
 RUN pip install plotly
 RUN pip install pyvis
+RUN pip install gunicorn
 
 RUN useradd -m datascientist
 USER datascientist
@@ -27,7 +28,7 @@ ENV ENVIRONMENT production
 
 RUN python data/process_data.py data/disaster_messages.csv data/disaster_categories.csv data/DisasterResponse.db
 
-RUN python models/train_classifier.py data/DisasterResponse.db models/classifier.pkl
+RUN 
 
 RUN chmod +x docker-entrypoint.sh && cp docker-entrypoint.sh /usr/local/bin/ 
 

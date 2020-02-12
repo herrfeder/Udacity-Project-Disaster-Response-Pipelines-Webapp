@@ -5,7 +5,7 @@ import pandas as pd
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 
-from flask import Flask
+from flask import Flask, Blueprint
 from flask import render_template, request, jsonify
 from plotly.graph_objs import Bar
 from sklearn.externals import joblib
@@ -20,12 +20,13 @@ from pyvis.network import Network
 import os
 from models.train_classifier import MessageIsQuestion
 from models.train_classifier import tokenize
+from models.train_classifier import ModelMover
 from sklearn.base import BaseEstimator, TransformerMixin
 import nltk
 
 
-app = Flask(__name__,
-            static_folder='static',)
+bp = Blueprint('diasterresponse', __name__,
+                        template_folder='templates')
 
 
 def create_graph(df, path="static/graph_disaster_response.html"):
@@ -110,18 +111,19 @@ def create_graph(df, path="static/graph_disaster_response.html"):
     # save resulting graph into path
     g.save_graph(path)
 
-    
+
 # load data
 engine = create_engine('sqlite:///data/DisasterResponse.db')
 df = pd.read_sql_table('messages', engine)
 
-# load model
-model = joblib.load("models/classifier.pkl")
 
+mm = ModelMover("data/DisasterResponse.db", "models/classifier.pkl")
+# load model
+model = mm.load_model()
 
 # index webpage displays cool visuals and receives user input text for model
-@app.route('/')
-@app.route('/index')
+@bp.route('/')
+@bp.route('/index')
 def index():
     
     
@@ -168,11 +170,11 @@ def index():
 
 
 # web page that handles user query and displays model results
-@app.route('/go')
+@bp.route('/go')
 def go():
     # save user input in query
     query = request.args.get('query', '') 
-
+    
     # use model to predict classification for query
     classification_labels = model.predict([query])[0]
     classification_results = dict(zip(df.columns[4:], classification_labels))
@@ -185,12 +187,16 @@ def go():
     )
 
 
+app = Flask(__name__,
+            static_folder='static',)
+app.register_blueprint(bp, url_prefix='/disasterresponse')
 
-
+def load():
+    model = load_model("models/classifier.pkl")
 
 def main():
-    app.run(host='0.0.0.0', port=8000, debug=True)
+    app.run(host='0.0.0.0', port=8000, debug=False)
 
 
 if __name__ == '__main__':
-    main()
+    pass
