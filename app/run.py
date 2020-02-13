@@ -27,7 +27,7 @@ import nltk
 
 bp = Blueprint('diasterresponse', __name__,
                         template_folder='templates',
-                        static_folder='static')
+                        static_folder='static_disasterresponse')
 
 
 def create_graph(df, path="static_disasterresponse/graph_disaster_response.html"):
