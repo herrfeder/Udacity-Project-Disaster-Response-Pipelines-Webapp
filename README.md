@@ -6,6 +6,18 @@
 |--------------------------------------|--------------------------------------|--------------------------------------|--------------------------------------|
 | ![](https://imgur.com/xTMDsW5.jpg) | ![](https://imgur.com/paJIsXT.jpg) | ![](https://imgur.com/bS8uYnF.jpg) | ![](https://imgur.com/95ZeX3K.jpg) |
 
+## Included Files
+  
+  * __Dockerfile and docker-entrypoint.sh__: Files for setting up Docker container
+  * __app/data/process_data__: Script for ETL-Pipeline
+  * __app/data/disaster_categories.csv__: Source data categories
+  * __app/data/disaster_messages.csv__: Source data messages
+  * __app/data/DisasterResponse.db__: Resulting SQLite Database
+  * __app/models/train_classifier.py__: Script for ML-Pipeline (Training and Storing)
+  * __templates/__: HTML templates for Web app representation
+  * __static_disasterresponse/__: Standalone Graph Plot
+  * __run.py__: Flask routes.py
+  * __wsgi.py__: Gunicorn Wrapper
 
 ## Webapp
 
