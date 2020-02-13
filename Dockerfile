@@ -26,13 +26,15 @@ WORKDIR /home/datascientist/Udacity-Project-Disaster-Response-Pipelines-Webapp/
 
 ENV ENVIRONMENT production
 
-RUN python app/data/process_data.py app/data/disaster_messages.csv app/data/disaster_categories.csv app/data/DisasterResponse.db
+
 
 USER root
 RUN chmod +x docker-entrypoint.sh && cp docker-entrypoint.sh /usr/local/bin/ 
 USER datascientist
 
-RUN python app/run.py
+WORKDIR /home/datascientist/Udacity-Project-Disaster-Response-Pipelines-Webapp/
+RUN python data/process_data.py data/disaster_messages.csv data/disaster_categories.csv data/DisasterResponse.db
+RUN python run.py
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 
