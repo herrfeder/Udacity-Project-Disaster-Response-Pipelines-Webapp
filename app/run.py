@@ -30,7 +30,7 @@ bp = Blueprint('diasterresponse', __name__,
                         static_folder='static')
 
 
-def create_graph(df, path="static/graph_disaster_response.html"):
+def create_graph(df, path="static_disasterresponse/graph_disaster_response.html"):
     '''
     Using PyVis to create Graph Plot with
     16 most frequent Categories
@@ -128,7 +128,7 @@ model = mm.load_model()
 def index():
     
     
-    graph_path = "static/graph_disaster_response.html"
+    graph_path = "static_disasterresponse/graph_disaster_response.html"
     if not os.path.exists(graph_path):
             create_graph(df)
             
