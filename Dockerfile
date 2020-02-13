@@ -1,4 +1,4 @@
-FROM tiangolo/uwsgi-nginx-flask:python3.6
+FROM python:3.7.6-buster
 
 RUN pip install numpy==1.17
 RUN pip install scipy==0.19.1
@@ -26,11 +26,13 @@ WORKDIR /home/datascientist/Udacity-Project-Disaster-Response-Pipelines-Webapp/
 
 ENV ENVIRONMENT production
 
-RUN python data/process_data.py data/disaster_messages.csv data/disaster_categories.csv data/DisasterResponse.db
+RUN python app/data/process_data.py app/data/disaster_messages.csv app/data/disaster_categories.csv app/data/DisasterResponse.db
 
-RUN 
-
+USER root
 RUN chmod +x docker-entrypoint.sh && cp docker-entrypoint.sh /usr/local/bin/ 
+USER datascientist
+
+RUN python app/run.py
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 
