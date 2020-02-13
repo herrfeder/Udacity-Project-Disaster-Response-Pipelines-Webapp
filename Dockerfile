@@ -1,7 +1,7 @@
 FROM python:3.7.6-buster
 
 RUN pip install numpy==1.17
-RUN pip install scipy==0.19.1
+RUN pip install scipy
 RUN pip install Flask==1.0.0
 RUN pip install pandas==1.0.0
 RUN pip install matplotlib
