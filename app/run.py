@@ -188,7 +188,7 @@ def go():
 
 
 app = Flask(__name__,
-            static_folder='static',)
+            static_folder='disasterresponse/static',)
 app.register_blueprint(bp, url_prefix='/disasterresponse')
 
 def load():
