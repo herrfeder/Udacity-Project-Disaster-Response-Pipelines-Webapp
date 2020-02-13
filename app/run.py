@@ -118,9 +118,9 @@ engine = create_engine('sqlite:///data/DisasterResponse.db')
 df = pd.read_sql_table('messages', engine)
 
 
-#mm = ModelMover("data/DisasterResponse.db", "models/classifier.pkl")
+mm = ModelMover("data/DisasterResponse.db", "models/classifier.pkl")
 # load model
-#model = mm.load_model()
+model = mm.load_model()
 
 # index webpage displays cool visuals and receives user input text for model
 @bp.route('/')
@@ -195,7 +195,7 @@ def load():
     model = load_model("models/classifier.pkl")
 
 def main():
-    app.run(host='0.0.0.0', port=8000, debug=False)
+    app.run(host='0.0.0.0', port=5000, debug=False)
 
 
 if __name__ == '__main__':
