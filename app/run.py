@@ -26,7 +26,8 @@ import nltk
 
 
 bp = Blueprint('diasterresponse', __name__,
-                        template_folder='templates')
+                        template_folder='templates',
+                        static_folder='static')
 
 
 def create_graph(df, path="static/graph_disaster_response.html"):
@@ -187,8 +188,7 @@ def go():
     )
 
 
-app = Flask(__name__,
-            static_folder='disasterresponse/static',)
+app = Flask(__name__)
 app.register_blueprint(bp, url_prefix='/disasterresponse')
 
 def load():
