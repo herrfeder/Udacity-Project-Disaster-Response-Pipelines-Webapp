@@ -132,7 +132,7 @@ def index():
     if not os.path.exists(graph_path):
             create_graph(df)
             
-    graphname = graph_path
+    graphname = "/disasterresponse/"+ graph_path
     # create visuals
     
     cols = df.iloc[:,5:].columns
