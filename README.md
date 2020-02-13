@@ -59,8 +59,9 @@ Please be gentle, the resources are restricted. This app __isn't responsive__.
     - To run ETL pipeline that cleans data and stores in database
         `python data/process_data.py data/disaster_messages.csv data/disaster_categories.csv data/DisasterResponse.db`
     - To run ML pipeline that trains classifier and saves
-        `python run.py` (this will take approximately 30 minutes)
-        (I had to modify this, because of this issue: https://www.stefaanlippens.net/python-pickling-and-dealing-with-attributeerror-module-object-has-no-attribute-thing.html)
+        `python run.py` 
+        * (this will take approximately 30 minutes)
+        * (I had to modify this, because of this issue: https://www.stefaanlippens.net/python-pickling-and-dealing-with-attributeerror-module-object-has-no-attribute-thing.html)
 
 4. Run the following command in the app's directory to run your web app.
     `gunicorn --bind 0.0.0.0:5000 wsgi:app`
