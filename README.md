@@ -57,9 +57,9 @@ Please be gentle, the resources are restricted. This app __isn't responsive__.
 3. Run the following commands in the project's `app` directory to set up your database and model.
 
     - To run ETL pipeline that cleans data and stores in database
-        `python data/process_data.py data/disaster_messages.csv data/disaster_categories.csv data/DisasterResponse.db`
+        * `python data/process_data.py data/disaster_messages.csv data/disaster_categories.csv data/DisasterResponse.db`
     - To run ML pipeline that trains classifier and saves
-        `python run.py` 
+        * `python run.py` 
         * (this will take approximately 30 minutes)
         * (I had to modify this, because of this issue: https://www.stefaanlippens.net/python-pickling-and-dealing-with-attributeerror-module-object-has-no-attribute-thing.html)
 
